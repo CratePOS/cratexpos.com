@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CrateX | Point of sale for every kind of store</title>
-<meta name="description" content="CrateX is a point of sale for shops, cafés, restaurants and any business with a counter. Ring, pay, done.">
+<title>CrateX Website</title>
+<meta name="description" content="CrateX: everything your counter needs, nothing it doesn't. A simple point of sale for shops, cafés, restaurants and salons.">
 <meta name="theme-color" content="#04070D">
 <link rel="icon" type="image/svg+xml" href="assets/cratex-app-icon-dark.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -14,6 +14,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Albert+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+
+
 /* Layout idea: a command deck. One ticket travels RING > FIRE > PAY > CLOSE in the hero and lights the headline as it goes;
    glass instrument panels below. Single dark theme by choice. */
 :root {
@@ -225,6 +227,207 @@ form .btn { width: 100%; }
 footer { border-top: 1px solid var(--line); padding: 32px 0 44px; color: var(--mute); font-size: 14px; }
 footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } html { scroll-behavior: auto; } }
+
+
+/* ===== multi-page additions ===== */
+[data-view][hidden] { display: none !important; }
+.nav nav a[aria-current="page"] { color: var(--ice); }
+.nav .login { color: var(--mute); }
+.menu-btn { display: none; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--line); background: var(--glass); color: var(--ice); cursor: pointer; }
+.menu-btn span, .menu-btn span::before, .menu-btn span::after { display: block; width: 18px; height: 2px; background: currentColor; border-radius: 2px; position: relative; }
+.menu-btn span::before, .menu-btn span::after { content: ""; position: absolute; left: 0; }
+.menu-btn span::before { top: -6px; } .menu-btn span::after { top: 6px; }
+@media (max-width: 900px) {
+  .menu-btn { display: inline-flex; }
+  .nav nav { position: absolute; top: 66px; left: 0; right: 0; display: none; flex-direction: column; align-items: stretch; gap: 0; padding: 6px 24px 22px; background: rgba(4, 7, 13, .97); border-bottom: 1px solid var(--line); }
+  .nav.open nav { display: flex; }
+  .nav nav a:not(.btn) { display: block; padding: 15px 0; border-bottom: 1px solid var(--line); font-size: 16px; }
+  .nav nav .btn { margin-top: 16px; }
+}
+
+/* hero with live register */
+.hero .wrap.hero-grid { grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr); gap: 48px; padding-top: 60px; padding-bottom: 64px; }
+.hero h1 { font-size: clamp(46px, 6.6vw, 98px); margin: 22px 0 22px; }
+.pick { margin-top: 30px; display: grid; gap: 12px; }
+.pick > span { font: 500 12px/1 var(--mono); letter-spacing: .2em; text-transform: uppercase; color: var(--mute); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chips button { font: 500 14px/1 var(--body); color: var(--ice); background: var(--glass); border: 1px solid var(--line); border-radius: 99px; padding: 11px 15px; cursor: pointer; transition: all .2s; }
+.chips button:hover { border-color: var(--beam); }
+.chips button[aria-pressed="true"] { background: var(--beam); color: #03121C; border-color: var(--beam); }
+.t-note { margin-top: 12px; text-align: center; font: 400 12.5px/1.4 var(--mono); color: var(--mute); }
+@media (max-width: 1000px) { .hero .wrap.hero-grid { grid-template-columns: 1fr; gap: 40px; } }
+
+/* page heads + grids */
+.page-head { padding: 80px 0 36px; position: relative; isolation: isolate; }
+.page-head::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(50% 80% at 85% 0%, rgba(124, 212, 255, .13), transparent 70%); }
+.page-head h1 { font-weight: 800; font-size: clamp(36px, 5.4vw, 70px); line-height: 1.02; letter-spacing: -.035em; margin: 18px 0 18px; max-width: 16ch; }
+.page-head .lede { font-size: 18px; }
+.sec-tight { padding-top: 24px; }
+#system.sec-tight { padding-top: 96px; }
+.grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 980px) { .grid3 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .grid3, .grid2 { grid-template-columns: 1fr; } }
+.cell ul { margin: 4px 0 0; padding: 0; list-style: none; display: grid; gap: 9px; color: var(--mute); font-size: 15px; }
+.cell ul li { display: grid; grid-template-columns: 14px 1fr; gap: 8px; align-items: baseline; }
+.cell ul li::before { content: ""; width: 6px; height: 6px; background: var(--beam); transform: rotate(45deg) translateY(-2px); }
+.cell .go { justify-self: start; margin-top: 10px; padding: 12px 18px; font-size: 14px; }
+.cell .big-n { font: 500 12px/1 var(--mono); letter-spacing: .2em; color: var(--beam); }
+
+/* why */
+.why h3 { font-size: 19px; }
+
+/* industries */
+.ind .cell { gap: 14px; }
+.ind .cell h3 { font-size: 20px; }
+.ind .sample { font: 400 12.5px/1.6 var(--mono); color: var(--mute); border-top: 1px dashed var(--line); padding-top: 12px; }
+.ind .sample b { color: var(--ice); font-weight: 500; }
+
+/* pricing */
+.plan .price-big { font: 800 clamp(38px, 4.6vw, 60px)/1 var(--display); letter-spacing: -.03em; }
+.plan .price-big small { font: 500 15px/1.4 var(--body); color: var(--mute); letter-spacing: 0; display: block; margin-top: 10px; }
+.calc { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+.calc form { margin: 0; }
+.calc .hint { grid-column: 1 / -1; font: 400 12.5px/1.5 var(--mono); color: var(--mute); }
+.out { display: grid; gap: 0; }
+.out div { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 15px 0; border-top: 1px solid var(--line); color: var(--mute); font-size: 15px; }
+.out div:first-child { border-top: 0; }
+.out b { font: 500 17px/1 var(--mono); color: var(--ice); font-variant-numeric: tabular-nums; }
+.out .total b { font: 700 28px/1 var(--display); letter-spacing: -.02em; }
+.out .us { margin-top: 10px; padding: 18px; border: 1px solid rgba(124, 212, 255, .4); border-radius: 14px; background: rgba(124, 212, 255, .06); color: var(--ice); display: block; font-size: 15px; line-height: 1.5; }
+.out .us b { font: 700 22px/1.2 var(--display); display: block; margin-top: 6px; }
+@media (max-width: 900px) { .calc { grid-template-columns: 1fr; } }
+
+/* tables */
+.tbl { overflow-x: auto; border: 1px solid var(--line); border-radius: 20px; background: var(--glass); }
+.tbl table { width: 100%; border-collapse: collapse; min-width: 760px; }
+.tbl th, .tbl td { text-align: left; padding: 18px 22px; border-top: 1px solid var(--line); vertical-align: top; font-size: 15px; line-height: 1.5; }
+.tbl thead th { border-top: 0; font: 500 12px/1 var(--mono); letter-spacing: .2em; text-transform: uppercase; color: var(--beam); padding-top: 20px; padding-bottom: 16px; }
+.tbl td { color: var(--mute); }
+.tbl td:first-child { color: var(--ice); font-weight: 600; width: 30%; }
+.tbl td:last-child { color: var(--ice); width: 26%; }
+.tbl td a { color: var(--beam); }
+
+/* steps */
+.steps { counter-reset: s; }
+.steps .cell::before { counter-increment: s; content: "0" counter(s); font: 500 12px/1 var(--mono); letter-spacing: .2em; color: var(--beam); }
+
+/* faq */
+.faq { display: grid; gap: 10px; max-width: 880px; }
+.faq details { border: 1px solid var(--line); border-radius: 16px; background: var(--glass); padding: 0 22px; transition: border-color .2s; }
+.faq details[open] { border-color: rgba(124, 212, 255, .4); }
+.faq summary { cursor: pointer; list-style: none; padding: 20px 0; font: 600 16.5px/1.35 var(--body); display: flex; justify-content: space-between; gap: 16px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; color: var(--beam); font: 500 20px/1 var(--mono); flex: none; }
+.faq details[open] summary::after { content: "\2212"; }
+.faq details p { padding: 0 0 20px; color: var(--mute); max-width: 68ch; }
+
+/* hardware */
+.hw svg.ic { width: 54px; height: 54px; color: var(--beam); }
+.hw .models { font: 400 13px/1.5 var(--mono); color: var(--mute); border-top: 1px dashed var(--line); padding-top: 12px; margin-top: 4px; }
+.hw .models b { color: var(--ice); font-weight: 500; }
+
+/* contact */
+.contact-list { list-style: none; margin: 8px 0 0; padding: 0; display: grid; }
+.contact-list li { display: grid; gap: 4px; padding: 16px 0; border-top: 1px solid var(--line); }
+.contact-list span { font: 500 12px/1 var(--mono); letter-spacing: .18em; text-transform: uppercase; color: var(--beam); }
+.contact-list b { font-weight: 500; color: var(--ice); }
+.contact-list a { color: var(--ice); }
+textarea { font: 400 16px/1.4 var(--body); color: var(--ice); background: rgba(4, 7, 13, .7); border: 1px solid var(--line); border-radius: 12px; padding: 14px; width: 100%; min-height: 110px; resize: vertical; }
+textarea:focus { outline: none; border-color: var(--beam); box-shadow: 0 0 0 4px rgba(124, 212, 255, .12); }
+.ok-note { color: #B9F5C9 !important; }
+
+/* cta band */
+.band { border: 1px solid var(--line); border-radius: 24px; padding: 48px; background: radial-gradient(60% 120% at 100% 0%, rgba(124, 212, 255, .16), transparent 70%), var(--glass); display: flex; justify-content: space-between; align-items: center; gap: 24px 40px; flex-wrap: wrap; }
+.band h2 { max-width: 18ch; }
+.band .cta { margin-top: 0; }
+@media (max-width: 600px) { .band { padding: 30px 24px; } }
+
+/* legal */
+.legal .panel { max-width: 760px; }
+
+/* footer */
+footer .wrap { display: block; }
+footer .foot { display: grid; grid-template-columns: 1.4fr repeat(3, minmax(0, 1fr)); gap: 32px; padding-bottom: 28px; border-bottom: 1px solid var(--line); margin-bottom: 22px; }
+footer .foot h4 { margin: 0 0 12px; font: 500 12px/1 var(--mono); letter-spacing: .2em; text-transform: uppercase; color: var(--beam); }
+footer .foot a { display: block; text-decoration: none; color: var(--mute); padding: 5px 0; }
+footer .foot a:hover { color: var(--ice); }
+footer .foot p { margin-top: 14px; max-width: 34ch; }
+footer .base { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+@media (max-width: 800px) { footer .foot { grid-template-columns: 1fr 1fr; } footer .foot > div:first-child { grid-column: 1 / -1; } }
+
+
+/* ===== v4: photos, big logo, less text ===== */
+.hero .wrap.v4 { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); padding-top: 56px; padding-bottom: 72px; }
+.hero .wrap.v4 .lede { font-size: 19px; max-width: 30ch; }
+.hero h1 { font-size: clamp(50px, 7.4vw, 112px); }
+@media (max-width: 940px) { .hero .wrap.v4 { grid-template-columns: 1fr; } }
+
+.photos { display: grid; grid-template-columns: 1.35fr 1fr 1fr; grid-auto-rows: clamp(260px, 26vw, 400px); gap: 12px; padding: 0 12px; }
+.photos figure { margin: 0; position: relative; border-radius: 20px; overflow: hidden; background: var(--deck); }
+.photos img, .icard img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.photos figcaption { position: absolute; left: 16px; bottom: 16px; font: 500 12px/1 var(--mono); letter-spacing: .18em; text-transform: uppercase; color: var(--ice); background: rgba(4, 7, 13, .62); backdrop-filter: blur(8px); border: 1px solid var(--line); padding: 9px 13px; border-radius: 99px; }
+@media (max-width: 760px) { .photos { grid-template-columns: 1fr 1fr; grid-auto-rows: 180px; } .photos figure:first-child { grid-column: 1 / -1; grid-row: span 1; } }
+@media (max-width: 600px) { .reactor .chip.c2 { top: 8%; right: 0; } .reactor .chip.c1 { top: 4%; } .reactor .core { width: 40%; } }
+
+.center { text-align: center; justify-items: center; margin-left: auto; margin-right: auto; }
+.try-wrap { max-width: 860px; margin: 0 auto; display: grid; gap: 20px; }
+.try-wrap .chips { justify-content: center; }
+
+.feat4 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.feat4 .wide { grid-column: span 2; }
+.cell.photo { min-height: 360px; align-content: end; background-size: cover; background-position: center; border-color: rgba(132, 184, 255, .22); }
+.cell.photo h3 { font-size: 24px; }
+.cell.photo p { color: #C5D2E6; }
+.cell h3.big { font-size: 22px; }
+@media (max-width: 900px) { .feat4 { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .feat4 { grid-template-columns: 1fr; } .feat4 .wide { grid-column: auto; } .cell.photo { min-height: 280px; } }
+
+.icards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.icard { border: 1px solid var(--line); border-radius: 20px; overflow: hidden; background: var(--deck); display: grid; grid-template-rows: auto 1fr; transition: border-color .25s, transform .25s; }
+.icard:hover { border-color: rgba(124, 212, 255, .5); transform: translateY(-3px); }
+.icard figure { margin: 0; aspect-ratio: 3 / 2; overflow: hidden; }
+.icard .body { padding: 20px 22px 22px; display: grid; gap: 12px; align-content: start; }
+.icard h3 { font-size: 19px; }
+.icard p { color: var(--mute); font-size: 15px; }
+.icard ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 7px; color: var(--mute); font-size: 14.5px; }
+.icard ul li::before { content: "\2014\00a0"; color: var(--beam); }
+.icard .go { justify-self: start; padding: 11px 16px; font-size: 14px; }
+@media (max-width: 900px) { .icards { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .icards { grid-template-columns: 1fr; } }
+
+.band p { color: var(--mute); margin-top: 10px; }
+.qa2 { display: grid; border: 1px solid var(--line); border-radius: 20px; background: var(--glass); overflow: hidden; }
+.qa2 div { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 24px; padding: 20px 26px; border-top: 1px solid var(--line); align-items: baseline; }
+.qa2 div:first-child { border-top: 0; }
+.qa2 b { font-weight: 600; }
+.qa2 span { color: var(--mute); }
+.qa2 span.yes { color: var(--ice); }
+.qa2 a { color: var(--beam); }
+@media (max-width: 640px) { .qa2 div { grid-template-columns: 1fr; gap: 6px; } }
+.reactor .chip { font-size: 12.5px; }
+.mosaic { display: grid; grid-template-columns: 1.6fr 1fr 1fr; grid-template-rows: repeat(2, clamp(190px, 19vw, 290px)); gap: 12px; padding: 0 12px; }
+.mosaic figure { margin: 0; position: relative; border-radius: 20px; overflow: hidden; background: var(--deck); }
+.mosaic figure:first-child { grid-row: span 2; }
+.mosaic img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.mosaic figcaption { position: absolute; left: 14px; bottom: 14px; font: 500 12px/1 var(--mono); letter-spacing: .18em; text-transform: uppercase; color: var(--ice); background: rgba(4, 7, 13, .62); backdrop-filter: blur(8px); border: 1px solid var(--line); padding: 9px 13px; border-radius: 99px; }
+@media (max-width: 760px) { .mosaic { grid-template-columns: 1fr 1fr; grid-template-rows: 220px repeat(2, 150px); } .mosaic figure:first-child { grid-column: 1 / -1; grid-row: auto; } }
+
+.lean { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; align-items: stretch; }
+.lean .pic { border-radius: 24px; overflow: hidden; min-height: 420px; position: relative; border: 1px solid var(--line); }
+.lean .pic img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.lean .pic span { position: absolute; left: 22px; bottom: 22px; font: 700 clamp(22px, 2.4vw, 32px)/1.1 var(--display); letter-spacing: -.02em; max-width: 14ch; text-shadow: 0 4px 30px rgba(0,0,0,.6); }
+.lists { display: grid; gap: 16px; }
+.lists .panel { padding: 28px 30px; gap: 4px; }
+.lists ul { list-style: none; margin: 10px 0 0; padding: 0; display: grid; }
+.lists li { display: flex; gap: 14px; align-items: baseline; padding: 11px 0; border-top: 1px solid var(--line); font-size: 16px; }
+.lists li:first-child { border-top: 0; }
+.lists .yes li::before { content: "\2713"; color: var(--beam); font-weight: 700; }
+.lists .no li { color: var(--mute); text-decoration: line-through; text-decoration-color: rgba(135, 152, 179, .5); }
+.lists .no li::before { content: "\2715"; color: #5B6B85; text-decoration: none; display: inline-block; }
+.lists .no { background: transparent; }
+@media (max-width: 900px) { .lean { grid-template-columns: 1fr; } .lean .pic { min-height: 300px; } }
+
 </style>
 </head>
 <body>
@@ -237,242 +440,386 @@ footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-cont
   </defs>
 </svg>
 
-<div class="nav">
+<div class="nav" id="nav">
   <div class="wrap">
-    <a class="brand" href="#top" aria-label="CrateX home">
+    <a class="brand" href="#home" aria-label="CrateX home">
       <svg class="mark" aria-hidden="true"><use href="#cx-mark"/></svg>
       <svg class="word" aria-hidden="true"><use href="#cx-word" width="100%" height="100%"/></svg>
     </a>
-    <nav aria-label="Main">
-      <a href="#system">System</a>
-      <a href="#register">Register</a>
+    <nav aria-label="Main" id="mainNav">
+      <a href="#industries">Industries</a>
       <a href="#pricing">Pricing</a>
-      <a class="btn btn-beam" href="#demo">Book a demo</a>
+      <a href="#hardware">Hardware</a>
+      <a href="#switch">Switch</a>
+      <a href="#contact">Contact</a>
+      <a class="login" id="loginLink" href="#" hidden>Log in</a>
+      <a class="btn btn-beam" href="#contact">Book a demo</a>
     </nav>
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav"><span></span></button>
   </div>
 </div>
 
-<header class="hero" id="top">
-  <div class="wrap">
-    <div>
-      <p class="tag">Point of sale for every kind of store</p>
-      <h1 id="verbs"><span class="on">Ring<i>.</i></span><span>Pay<i>.</i></span><span>Done<i>.</i></span></h1>
-      <p class="lede">CrateX runs the whole sale on one screen: the items, the payment and the receipt. Built for shops, cafés, restaurants, salons and any business with a counter.</p>
-      <div class="cta">
-        <a class="btn btn-beam" href="#demo">Book a demo</a>
-        <a class="btn btn-line" href="#register">Try the register</a>
-      </div>
-    </div>
-
-    <div class="reactor" aria-hidden="true">
-      <svg class="rings" viewBox="-300 -300 600 600">
-        <polygon class="r3" points="0,-280 242.5,-140 242.5,140 0,280 -242.5,140 -242.5,-140"/>
-        <polygon class="r2" points="0,-230 199.2,-115 199.2,115 0,230 -199.2,115 -199.2,-115"/>
-        <polygon class="r1" points="0,-180 155.9,-90 155.9,90 0,180 -155.9,90 -155.9,-90"/>
-      </svg>
-      <svg class="core" viewBox="-90 -102 180 204"><use href="#cx-mark" x="-90" y="-102" width="180" height="204"/></svg>
-      <div class="chip c1"><b>#0294</b> · Register 1<br>4 items <em>ringing</em></div>
-      <div class="chip c2"><b>#0293</b> · Register 2<br><em>paid</em> $29.40</div>
-      <div class="chip c3"><b>Canvas tote</b> · Stock<br><em>3 left</em> · reorder</div>
-    </div>
-
-    <div class="track" aria-label="A sale moving through its three steps">
-      <div class="track-top"><span><b>Sale #0294</b> · Register 1</span><span id="trackMsg">Ringing up 4 items</span></div>
-      <div class="rail" id="rail">
-        <span class="fill"></span>
-        <span class="stop on">RING</span><span class="stop">PAY</span><span class="stop">DONE</span>
-      </div>
-    </div>
-  </div>
-</header>
-
-<div class="ticker" aria-hidden="true"><div id="tick"></div></div>
-
 <main>
-<section id="system">
-  <div class="wrap">
-    <div class="head">
-      <p class="tag">The system</p>
-      <h2>Front counter to back office, on one deck.</h2>
-      <p class="lede">Every register, screen and report works from the same sale, whatever you sell.</p>
-      <ul class="types" aria-label="Works for">
-        <li>Retail shops</li><li>Restaurants</li><li>Cafés and bakeries</li><li>Grocery and convenience</li><li>Salons and services</li><li>Food trucks and pop-ups</li>
-      </ul>
-    </div>
-    <div class="bento">
-      <div class="cell c-kds">
-        <h3>Inventory that counts itself</h3>
-        <p>Every sale takes the item off the shelf count. When something runs low, it glows before you run out.</p>
-        <div class="kds vis">
-          <div class="late"><b>Canvas tote <span>3 left</span></b>Reorder point 5<small><u style="width:9%"></u></small></div>
-          <div><b>House blend 12oz <span>24</span></b>In stock<small><u style="width:60%"></u></small></div>
-          <div><b>Ceramic mug <span>41</span></b>In stock<small><u style="width:88%"></u></small></div>
-        </div>
-      </div>
-      <div class="cell c-menu">
-        <h3>Sold out in one tap</h3>
-        <p>Switch an item off and it leaves every register.</p>
-        <div class="toggles vis">
-          <button class="tg" type="button" aria-pressed="false">Iced latte<i></i></button>
-          <button class="tg" type="button" aria-pressed="true">Canvas tote<i></i></button>
-          <button class="tg" type="button" aria-pressed="false">Gift box<i></i></button>
-        </div>
-      </div>
-      <div class="cell c-pay">
-        <h3>Payments</h3>
-        <p>Card, tap or cash. Card payments run through Stripe.</p>
-        <div class="tap vis"><span></span><span></span><span></span><b>Tap to pay</b></div>
-      </div>
-      <div class="cell c-rep">
-        <h3>Reports</h3>
-        <p>What sold, when, and how it was paid.</p>
-        <div class="vis">
-          <div class="bars"><i style="height:22%"></i><i style="height:58%"></i><i style="height:96%"></i><i style="height:74%"></i><i style="height:38%"></i><i style="height:30%"></i><i style="height:52%"></i><i style="height:88%"></i><i style="height:100%"></i><i style="height:66%"></i><i style="height:34%"></i></div>
-          <div class="cap"><span>11a</span><span>Sample day, sales by hour</span><span>9p</span></div>
-        </div>
-      </div>
-      <div class="cell c-staff">
-        <h3>Staff PINs</h3>
-        <p>Every sale and discount has a name on it.</p>
-        <div class="pins vis"><i class="f"></i><i class="f"></i><i class="f"></i><i></i><span>Enter PIN</span></div>
-      </div>
-      <div class="cell c-half">
-        <h3>Scan it or tap it</h3>
-        <p>Scan a barcode or tap a tile. Both land on the same sale.</p>
-        <div class="scan vis"><div class="code"></div><span><b>Canvas tote</b>$18.00 added</span></div>
-      </div>
-      <div class="cell c-half">
-        <h3>Order tickets for kitchens and prep</h3>
-        <p>Serving food or making to order? Tickets reach the prep screen the moment they are rung in.</p>
-        <div class="kds two vis">
-          <div class="late"><b>#0291 <span data-t="432">7:12</span></b>2 Sandwich, 1 Fries</div>
-          <div><b>#0292 <span data-t="55">0:55</span></b>2 Latte, 1 Croissant</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<section id="register" style="padding-top:0">
-  <div class="wrap try">
-    <div class="head" style="margin:0">
-      <p class="tag">Try the register</p>
-      <h2>Go ahead, ring one up.</h2>
-      <p class="lede">Pick a store type, tap a few items and charge the sale. This is a demo with sample catalogs.</p>
+<!-- ===================== HOME ===================== -->
+<div data-view="home">
+  <header class="hero">
+    <div class="wrap v4">
+      <div>
+        <p class="tag">Point of sale, minus the extras</p>
+        <h1 id="verbs"><span class="on">Ring<i>.</i></span><span>Pay<i>.</i></span><span>Done<i>.</i></span></h1>
+        <p class="lede">Everything your counter needs. Nothing it doesn't.</p>
+        <div class="cta">
+          <a class="btn btn-beam" href="#contact">Book a demo</a>
+          <button class="btn btn-line" type="button" id="goTry">Try the register</button>
+        </div>
+      </div>
+      <div class="reactor" aria-hidden="true">
+        <svg class="rings" viewBox="-300 -300 600 600">
+          <polygon class="r3" points="0,-280 242.5,-140 242.5,140 0,280 -242.5,140 -242.5,-140"/>
+          <polygon class="r2" points="0,-230 199.2,-115 199.2,115 0,230 -199.2,115 -199.2,-115"/>
+          <polygon class="r1" points="0,-180 155.9,-90 155.9,90 0,180 -155.9,90 -155.9,-90"/>
+        </svg>
+        <svg class="core" viewBox="-90 -102 180 204"><use href="#cx-mark" x="-90" y="-102" width="180" height="204"/></svg>
+        <div class="chip c1"><b>#0294</b><br><em>ringing</em></div>
+        <div class="chip c2"><b>#0293</b><br><em>paid</em> $29.40</div>
+        <div class="chip c3"><b>Tote</b><br><em>3 left</em></div>
+      </div>
     </div>
-    <div class="terminal">
-      <div class="t-bar"><span><b>CrateX</b> · Register 1</span><em>● Demo</em></div>
-      <div class="tabs" role="tablist" aria-label="Store type" id="tabs"></div>
-      <div class="t-body">
-        <div class="keys" id="keys"></div>
-        <div class="ticket">
-          <header><b id="ordNo">Sale #0294</b><span>Counter</span></header>
-          <ul class="lines" id="lines"></ul>
-          <dl class="sum">
-            <dt>Subtotal</dt><dd id="sub">$0.00</dd>
-            <dt>Sample tax 8.875%</dt><dd id="tax">$0.00</dd>
-            <dt class="tot">Total</dt><dd class="tot" id="tot">$0.00</dd>
-          </dl>
-          <div class="acts">
-            <button type="button" id="fire">Hold sale</button>
-            <button type="button" class="charge" id="charge">Charge</button>
+  </header>
+
+  <div class="mosaic" aria-label="CrateX at work">
+    <figure><img src="img/food.jpg" alt="Crispy chicken sandwich and fries, kitchen order screen behind" loading="lazy"><figcaption>Restaurants</figcaption></figure>
+    <figure><img src="img/tap.jpg" alt="Customer tapping a phone on a card reader" loading="lazy"><figcaption>Tap to pay</figcaption></figure>
+    <figure><img src="img/bakery.jpg" alt="Bakery worker handing a bag of pastries across the counter" loading="lazy"><figcaption>Bakeries</figcaption></figure>
+    <figure><img src="img/retail.jpg" alt="Boutique checkout counter with a register and card reader" loading="lazy"><figcaption>Retail</figcaption></figure>
+    <figure><img src="img/pizza.jpg" alt="Pizza on a peel beside a register, wood oven glowing behind" loading="lazy"><figcaption>Pizzerias</figcaption></figure>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="head"><p class="tag">Just what you need</p><h2>Big-chain POS is built for big chains.</h2><p class="lede">CrateX is built for your counter. The tools you use every day, and none of the weight.</p></div>
+      <div class="lean">
+        <div class="pic"><img src="img/minimal.jpg" alt="One register screen and one card reader on a clean counter" loading="lazy"><span>A screen and a reader. That's the setup.</span></div>
+        <div class="lists">
+          <div class="panel yes"><p class="tag">You get</p><ul>
+            <li>A fast register</li><li>Card, tap and cash</li><li>Stock that counts itself</li><li>Orders to the kitchen</li><li>Staff PINs</li><li>Daily sales reports</li>
+          </ul></div>
+          <div class="panel no"><p class="tag" style="color:var(--mute)">You skip</p><ul>
+            <li>Enterprise add-ons you'll never open</li><li>Settings built for 500 locations</li><li>Bundles you pay for and don't use</li><li>A training day to ring one sale</li>
+          </ul></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tryReg">
+    <div class="wrap try-wrap">
+      <div class="head center" style="margin-bottom:6px">
+        <p class="tag">Try it</p>
+        <h2>Pick a store. Ring a sale.</h2>
+      </div>
+      <div class="chips" id="chips" role="group" aria-label="Store type"></div>
+      <div class="terminal" id="terminal" aria-label="Interactive CrateX register demo">
+        <div class="t-bar"><span><b>CrateX</b> · <span id="storeName">Retail</span> · Register 1</span><em>● Live demo</em></div>
+        <div class="t-body">
+          <div class="keys" id="keys"></div>
+          <div class="ticket">
+            <header><b id="ordNo">Sale #0294</b><span>Counter</span></header>
+            <ul class="lines" id="lines"></ul>
+            <dl class="sum">
+              <dt>Subtotal</dt><dd id="sub">$0.00</dd>
+              <dt>Sample tax 8.875%</dt><dd id="tax">$0.00</dd>
+              <dt class="tot">Total</dt><dd class="tot" id="tot">$0.00</dd>
+            </dl>
+            <div class="acts">
+              <button type="button" id="fire">Hold sale</button>
+              <button type="button" class="charge" id="charge">Charge</button>
+            </div>
           </div>
         </div>
+        <div class="t-foot"><span><b id="open">3</b> <span id="openLbl">sales on hold</span></span><span id="status">Ready</span></div>
       </div>
-      <div class="t-foot"><span><b id="open">3</b> <span id="openLbl">sales on hold</span></span><span id="status">Ready</span></div>
+      <p class="t-note">Sample catalog. No real payment.</p>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="pricing" style="padding-top:0">
-  <div class="wrap duo">
-    <div class="panel">
-      <p class="tag">Pricing</p>
-      <h2>One plan per location.</h2>
-      <p class="lede">Launch pricing is being finalized. Book a demo for a quote.</p>
-      <ul>
-        <li><b>Monthly subscription per location</b>Registers, inventory, catalog and reports included.</li>
-        <li><b>Card processing through Stripe</b>Processing fees are shown before you sign up.</li>
-        <li><b>Catalog setup with you</b>You open your first day with the system ready.</li>
-      </ul>
+  <section class="sec-tight">
+    <div class="wrap">
+      <div class="head"><p class="tag">The system</p><h2>Everything at the counter.</h2></div>
+      <div class="feat4">
+        <div class="cell photo wide" style="background-image:linear-gradient(180deg, rgba(4,7,13,0) 30%, rgba(4,7,13,.92)), url(img/tap.jpg)">
+          <h3>Card, tap or cash</h3><p>Paid out to your bank by Stripe.</p>
+        </div>
+        <div class="cell">
+          <h3 class="big">Stock counts itself</h3><p>Low items glow before you run out.</p>
+          <div class="kds vis" style="grid-template-columns:1fr">
+            <div class="late"><b>Canvas tote <span>3 left</span></b><small><u style="width:9%"></u></small></div>
+            <div><b>House blend <span>24</span></b><small><u style="width:60%"></u></small></div>
+            <div><b>Ceramic mug <span>41</span></b><small><u style="width:88%"></u></small></div>
+          </div>
+        </div>
+        <div class="cell photo" style="background-image:linear-gradient(180deg, rgba(4,7,13,0) 35%, rgba(4,7,13,.92)), url(img/owner.jpg)">
+          <h3>See what sold</h3><p>Your day in one screen.</p>
+        </div>
+        <div class="cell photo wide" style="background-image:linear-gradient(180deg, rgba(4,7,13,0) 30%, rgba(4,7,13,.92)), url(img/kitchen.jpg)">
+          <h3>Straight to the kitchen</h3><p>Rung in, on the screen, on the plate.</p>
+        </div>
+      </div>
     </div>
-    <div class="panel" id="demo">
+  </section>
+
+  <section class="sec-tight">
+    <div class="wrap">
+      <div class="head"><p class="tag">Industries</p><h2>Built for your kind of store.</h2></div>
+      <div class="icards" id="homeInd"></div>
+    </div>
+  </section>
+
+  <section class="sec-tight">
+    <div class="wrap">
+      <div class="band">
+        <div><h2>Everything you need. Nothing you don't.</h2><p>Built in New York. Live at <span data-cfg="firstCustomer">a New York restaurant</span>.</p></div>
+        <div class="cta"><a class="btn btn-beam" href="#contact">Book a demo</a><a class="btn btn-line" href="#pricing">Pricing</a></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===================== INDUSTRIES ===================== -->
+<div data-view="industries" hidden>
+  <header class="page-head"><div class="wrap">
+    <p class="tag">Industries</p>
+    <h1>One register. Any counter.</h1>
+  </div></header>
+  <section class="sec-tight"><div class="wrap"><div class="icards" id="indGrid"></div></div></section>
+  <section class="sec-tight"><div class="wrap"><div class="band"><h2>Don't see yours?</h2><div class="cta"><a class="btn btn-beam" href="#contact">Tell us what you sell</a></div></div></div></section>
+</div>
+
+<!-- ===================== PRICING ===================== -->
+<div data-view="pricing" hidden>
+  <header class="page-head"><div class="wrap">
+    <p class="tag">Pricing</p>
+    <h1>One plan per location.</h1>
+    <p class="lede">The full system. No tiers, no add-ons.</p>
+  </div></header>
+
+  <section class="sec-tight plan"><div class="wrap grid2">
+    <div class="panel">
+      <p class="tag">Software</p>
+      <div class="price-big" id="planPrice">Coming soon<small>Book a demo for a quote.</small></div>
+      <ul style="list-style:none;margin:6px 0 0;padding:0" id="planList"></ul>
+    </div>
+    <div class="panel">
+      <p class="tag">Card payments</p>
+      <div class="price-big" id="ratePrice">In writing<small>Shown before you sign up. Runs on Stripe.</small></div>
+      <ul style="list-style:none;margin:6px 0 0;padding:0" id="payList"></ul>
+    </div>
+  </div></section>
+
+  <section class="sec-tight"><div class="wrap">
+    <div class="head"><p class="tag">Cost check</p><h2>What do you pay now?</h2></div>
+    <div class="calc">
+      <div class="panel">
+        <form id="calcForm" novalidate>
+          <label>Monthly card sales ($)<input id="c-sales" type="number" min="0" step="100" value="30000" inputmode="decimal"></label>
+          <label>Average sale ($)<input id="c-ticket" type="number" min="1" step="1" value="25" inputmode="decimal"></label>
+          <label>Processing rate (%)<input id="c-rate" type="number" min="0" step="0.01" value="2.9" inputmode="decimal"></label>
+          <label>Fee per payment (¢)<input id="c-cents" type="number" min="0" step="1" value="30" inputmode="numeric"></label>
+          <label class="full">Monthly software ($)<input id="c-soft" type="number" min="0" step="1" value="60" inputmode="decimal"></label>
+          <p class="hint">Example values. Use your statement.</p>
+        </form>
+      </div>
+      <div class="panel">
+        <div class="out">
+          <div><span>Payments per month</span><b id="o-tx">0</b></div>
+          <div><span>Processing</span><b id="o-proc">$0</b></div>
+          <div><span>Software</span><b id="o-soft">$0</b></div>
+          <div class="total"><span>Total per month</span><b id="o-tot">$0</b></div>
+          <div><span>Effective rate</span><b id="o-eff">0%</b></div>
+          <p class="us" id="o-us">We'll quote CrateX against this number.<b><a href="#contact" style="color:var(--beam)">Get a quote</a></b></p>
+        </div>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="sec-tight"><div class="wrap">
+    <div class="head"><p class="tag">Questions</p><h2>The fine print.</h2></div>
+    <div class="faq" id="priceFaq"></div>
+  </div></section>
+</div>
+
+<!-- ===================== HARDWARE ===================== -->
+<div data-view="hardware" hidden>
+  <header class="page-head"><div class="wrap">
+    <p class="tag">Hardware</p>
+    <h1>Start small. Add as you grow.</h1>
+  </div></header>
+  <section class="sec-tight hw"><div class="wrap"><div class="grid3" id="hwGrid"></div></div></section>
+  <section class="sec-tight"><div class="wrap"><div class="band"><h2>Have hardware already?</h2><div class="cta"><a class="btn btn-beam" href="#contact">Tell us what you have</a></div></div></div></section>
+</div>
+
+<!-- ===================== SWITCH ===================== -->
+<div data-view="switch" hidden>
+  <header class="page-head"><div class="wrap">
+    <p class="tag">Switch</p>
+    <h1>Ask any POS these first.</h1>
+  </div></header>
+  <section class="sec-tight"><div class="wrap"><div class="qa2" id="qaList"></div></div></section>
+  <section class="sec-tight"><div class="wrap">
+    <div class="head"><p class="tag">Moving over</p><h2>Three steps.</h2></div>
+    <div class="grid3 steps">
+      <div class="cell"><h3>Send your catalog</h3><p>An export, a spreadsheet or photos of your menu.</p></div>
+      <div class="cell"><h3>We set it up with you</h3><p>Items, prices, staff and taxes, tested first.</p></div>
+      <div class="cell"><h3>Go live</h3><p>Open your first day ready to sell.</p></div>
+    </div>
+  </div></section>
+  <section class="sec-tight"><div class="wrap"><div class="band"><h2>Ready to compare?</h2><div class="cta"><a class="btn btn-beam" href="#contact">Book a demo</a><a class="btn btn-line" href="#pricing">Check your costs</a></div></div></div></section>
+</div>
+
+<!-- ===================== CONTACT ===================== -->
+<div data-view="contact" hidden>
+  <header class="page-head"><div class="wrap">
+    <p class="tag">Contact</p>
+    <h1>See it run your store.</h1>
+  </div></header>
+  <section class="sec-tight"><div class="wrap duo">
+    <div class="panel">
       <p class="tag">Book a demo</p>
-      <h2>See it run your store.</h2>
       <form id="demoForm" novalidate>
         <label>Your name<input id="f-name" name="name" autocomplete="name" required></label>
-        <label>Business name<input id="f-rest" name="business" autocomplete="organization" required></label>
-        <label class="full">Email<input id="f-email" name="email" type="email" autocomplete="email" required></label>
-        <label>Store type<select id="f-type" name="type"><option>Retail shop</option><option>Restaurant</option><option>Café or bakery</option><option>Grocery or convenience</option><option>Salon or services</option><option>Something else</option></select></label>
+        <label>Business name<input id="f-biz" name="business" autocomplete="organization" required></label>
+        <label>Email<input id="f-email" name="email" type="email" autocomplete="email" required></label>
+        <label>Phone (optional)<input id="f-phone" name="phone" type="tel" autocomplete="tel"></label>
+        <label>Store type<select id="f-type" name="type"></select></label>
         <label>Locations<select id="f-loc" name="locations"><option>1 location</option><option>2 to 5 locations</option><option>6 or more</option></select></label>
-        <button class="btn btn-beam full" type="submit">Request a demo</button>
+        <label class="full">Current POS (optional)<textarea id="f-msg" name="message"></textarea></label>
+        <button class="btn btn-beam full" type="submit" id="f-send">Request a demo</button>
         <p class="full" id="formNote" role="status"></p>
       </form>
     </div>
-  </div>
-</section>
+    <div class="panel">
+      <p class="tag">Reach us</p>
+      <ul class="contact-list">
+        <li><span>Email</span><b data-cfg="email">Use the form.</b></li>
+        <li><span>Phone</span><b data-cfg="phone">Leave your number in the form.</b></li>
+        <li><span>Hours</span><b data-cfg="hours">Posted at launch.</b></li>
+        <li><span>Based in</span><b>New York, NY</b></li>
+      </ul>
+    </div>
+  </div></section>
+</div>
+
+<!-- ===================== LEGAL ===================== -->
+<div data-view="privacy" hidden class="legal">
+  <header class="page-head"><div class="wrap"><p class="tag">Privacy</p><h1>Privacy policy</h1></div></header>
+  <section class="sec-tight"><div class="wrap"><div class="panel"><p class="lede">Published here before launch. Questions now? <a href="#contact" style="color:var(--beam)">Contact us</a>.</p></div></div></section>
+</div>
+<div data-view="terms" hidden class="legal">
+  <header class="page-head"><div class="wrap"><p class="tag">Terms</p><h1>Terms of service</h1></div></header>
+  <section class="sec-tight"><div class="wrap"><div class="panel"><p class="lede">Published here before launch. Want them first? <a href="#contact" style="color:var(--beam)">Ask us</a>.</p></div></div></section>
+</div>
+
 </main>
 
 <footer>
   <div class="wrap">
-    <a class="brand" href="#top" aria-label="CrateX home">
-      <svg class="mark" aria-hidden="true"><use href="#cx-mark"/></svg>
-      <svg class="word" aria-hidden="true"><use href="#cx-word" width="100%" height="100%"/></svg>
-    </a>
-    <span>Point of sale for every kind of store. New York, NY.</span>
-    <span>© 2026 CrateX</span>
+    <div class="foot">
+      <div>
+        <a class="brand" href="#home" aria-label="CrateX home" style="padding:0">
+          <svg class="mark" aria-hidden="true"><use href="#cx-mark"/></svg>
+          <svg class="word" aria-hidden="true"><use href="#cx-word" width="100%" height="100%"/></svg>
+        </a>
+        <p>Everything your counter needs. Nothing it doesn't.</p>
+      </div>
+      <div><h4>Product</h4><a href="#industries">Industries</a><a href="#hardware">Hardware</a><a href="#pricing">Pricing</a></div>
+      <div><h4>Switch</h4><a href="#switch">Questions to ask</a><a href="#contact">Book a demo</a></div>
+      <div><h4>Company</h4><a href="#contact">Contact</a><a href="#privacy">Privacy</a><a href="#terms">Terms</a></div>
+    </div>
+    <div class="base"><span>© 2026 CrateX</span><span>New York, NY</span></div>
   </div>
 </footer>
 
 <script>
+/* =====================================================================
+   CONFIG: fill in your real details. Anything left null shows an
+   honest "coming soon / ask us" on the site instead of a made-up value.
+   ===================================================================== */
+var CONFIG = {
+  email: null,            // e.g. "hello@cratex.com"
+  phone: null,            // e.g. "(212) 555-0100"
+  hours: null,            // e.g. "Every day, 8am to 11pm ET"
+  loginUrl: null,         // e.g. "https://app.cratex.com"
+  formEndpoint: null,     // e.g. a Formspree / Basin URL that accepts POST
+  firstCustomer: "Cravin Crispy",
+  pricing: { monthly: null, ratePct: null, perTxCents: null },  // e.g. 59, 2.7, 10
+  answers: {
+    contract: null,       // e.g. "Month to month"
+    prices: null,         // e.g. "Yes, on this site"
+    payments: "Stripe. Rate shown before you sign.",
+    offline: null,
+    data: null,
+    support: null
+  },
+  hardware: { register: null, reader: null, printer: null, drawer: null, scanner: null, kds: null }
+};
+
 (function () {
   var $ = function (id) { return document.getElementById(id); };
   var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  // ---------- hero: one sale walks RING > PAY > DONE ----------
-  var verbs = $("verbs").children, stops = $("rail").querySelectorAll(".stop"), fill = $("rail").querySelector(".fill");
-  var MSG = ["Ringing up 4 items", "Paid $29.40 by card", "Done · receipt sent, stock updated"];
-  function stage(n) {
-    for (var i = 0; i < stops.length; i++) stops[i].classList.toggle("on", i <= n);
-    for (var j = 0; j < verbs.length; j++) verbs[j].classList.toggle("on", still || j === n);
-    fill.style.width = (n * 33.333) + "%";
-    $("trackMsg").textContent = MSG[n];
-  }
-  if (still) { stage(2); } else { var s = 0; stage(0); setInterval(function () { s = (s + 1) % 3; stage(s); }, 2000); }
-
-  // ---------- ticker (demo events) ----------
-  var EV = ["<b>#0294</b> ringing · 4 items", "<b>#0293</b> <em>paid</em> $29.40", "<b>Canvas tote</b> low stock · 3 left", "<b>#0292</b> sent to prep · 2 Latte, 1 Croissant", "<b>Gift card</b> sold · $25.00", "<b>#0290</b> <em>done</em> · receipt sent", "<b>Register 2</b> signed in", "<b>#0289</b> <em>paid</em> $17.69"];
-  var row = EV.map(function (e) { return "<span>" + e + "</span>"; }).join("");
-  $("tick").innerHTML = row + row;
-
-  // ---------- kitchen timers ----------
-  var timers = document.querySelectorAll("[data-t]");
-  if (!still) setInterval(function () {
-    timers.forEach(function (el) { var t = +el.dataset.t + 1; el.dataset.t = t; el.textContent = Math.floor(t / 60) + ":" + ("0" + t % 60).slice(-2); });
-  }, 1000);
-
-  // ---------- sold-out toggles ----------
-  document.querySelectorAll(".tg").forEach(function (b) {
-    b.addEventListener("click", function () { b.setAttribute("aria-pressed", b.getAttribute("aria-pressed") === "true" ? "false" : "true"); });
-  });
-
-  // ---------- register demo, with a sample catalog per store type ----------
-  var STORES = [
-    { name: "Retail", food: false, start: [0, 1, 3], items: [["T-shirt", 24.00], ["Canvas tote", 18.00], ["Ceramic mug", 14.00], ["Sticker pack", 5.00], ["Candle", 22.00], ["Gift card", 25.00]] },
-    { name: "Caf\u00e9", food: true, start: [0, 0, 2], items: [["Latte", 4.75], ["Cold brew", 4.25], ["Croissant", 3.95], ["Bagel", 3.50], ["Cookie", 2.75], ["Drip coffee", 3.00]] },
-    { name: "Restaurant", food: true, start: [0, 0, 3, 5], items: [["Crispy Sandwich", 9.50], ["Tenders (5)", 11.00], ["Wings (8)", 13.50], ["Fries", 4.25], ["Slaw", 3.50], ["Lemonade", 3.75]] }
-  ];
-  var TAX = 0.08875, store = STORES[0], order = {}, ordNo = 294, open = 3, sent = false;
   var money = function (n) { return "$" + n.toFixed(2); };
+  var usd0 = function (n) { return "$" + Math.round(n).toLocaleString("en-US"); };
+
+  document.querySelectorAll("[data-cfg]").forEach(function (el) {
+    var k = el.getAttribute("data-cfg"), v = CONFIG[k];
+    if (!v) return;
+    if (k === "email") el.innerHTML = '<a href="mailto:' + v + '">' + v + "</a>";
+    else if (k === "phone") el.innerHTML = '<a href="tel:' + v.replace(/[^\d+]/g, "") + '">' + v + "</a>";
+    else el.textContent = v;
+  });
+  if (CONFIG.loginUrl) { var lg = $("loginLink"); lg.href = CONFIG.loginUrl; lg.hidden = false; }
+
+  /* ---------- headline cycles Ring > Pay > Done ---------- */
+  var verbs = $("verbs").children;
+  function stage(n) { for (var j = 0; j < verbs.length; j++) verbs[j].classList.toggle("on", still || j === n); }
+  var s = 0; stage(0);
+  if (!still) setInterval(function () { s = (s + 1) % 3; stage(s); }, 1900);
+
+  /* ---------- store types ---------- */
+  var STORES = [
+    { name: "Retail shop", short: "Retail", img: "retail", food: false, blurb: "Boutiques, gifts and every shop with a shelf.",
+      feats: ["Scan or tap", "Live stock counts", "Low-stock alerts"],
+      start: [0, 1, 3], items: [["T-shirt", 24.00], ["Canvas tote", 18.00], ["Ceramic mug", 14.00], ["Sticker pack", 5.00], ["Candle", 22.00], ["Gift card", 25.00]] },
+    { name: "Café or bakery", short: "Café", img: "bakery", food: true, blurb: "Coffee bars, bakeries and tea shops.",
+      feats: ["Best sellers one tap away", "Orders to the bar", "Tips on screen"],
+      start: [0, 0, 2], items: [["Latte", 4.75], ["Cold brew", 4.25], ["Croissant", 3.95], ["Bagel", 3.50], ["Cookie", 2.75], ["Drip coffee", 3.00]] },
+    { name: "Restaurant", short: "Restaurant", img: "pizza", food: true, blurb: "Counter service, takeout and dine-in.",
+      feats: ["Kitchen screen tickets", "Sold-out switch", "Modifiers and notes"],
+      start: [0, 0, 3, 5], items: [["Crispy Sandwich", 9.50], ["Tenders (5)", 11.00], ["Wings (8)", 13.50], ["Fries", 4.25], ["Slaw", 3.50], ["Lemonade", 3.75]] },
+    { name: "Salon or service", short: "Salon", img: "salon", food: false, blurb: "Hair, nails, barbers and spas.",
+      feats: ["Services and products together", "Staff PINs", "Tips by stylist"],
+      start: [0, 4], items: [["Haircut", 35.00], ["Color", 85.00], ["Blowout", 40.00], ["Beard trim", 20.00], ["Hair oil", 18.00], ["Shampoo add-on", 10.00]] },
+    { name: "Grocery or convenience", short: "Grocery", img: "grocery", food: false, blurb: "Bodegas, markets and corner stores.",
+      feats: ["Scan-first checkout", "Reorder points", "Cash and card"],
+      start: [0, 1, 4], items: [["Milk 1/2 gal", 4.29], ["Eggs (12)", 3.99], ["Bread", 3.49], ["Coffee beans", 12.99], ["Orange juice", 5.49], ["Chips", 2.29]] },
+    { name: "Food truck or pop-up", short: "Food truck", img: "truck", food: true, blurb: "Trucks, carts and weekend stands.",
+      feats: ["One tablet does it all", "Pickup numbers", "Tap at the window"],
+      start: [0, 0, 1, 4], items: [["Tacos (2)", 7.00], ["Burrito", 11.00], ["Quesadilla", 9.00], ["Chips & salsa", 3.50], ["Horchata", 4.00], ["Soda", 2.00]] }
+  ];
+
   STORES.forEach(function (st, k) {
     var b = document.createElement("button");
-    b.type = "button"; b.textContent = st.name; b.setAttribute("role", "tab"); b.setAttribute("aria-selected", k === 0 ? "true" : "false");
+    b.type = "button"; b.textContent = st.name; b.setAttribute("aria-pressed", k === 0 ? "true" : "false");
     b.addEventListener("click", function () { pick(k); });
-    $("tabs").appendChild(b);
+    $("chips").appendChild(b);
   });
+
+  /* ---------- register ---------- */
+  var TAX = 0.08875, store = STORES[0], order = {}, ordNo = 294, open = 3, sent = false;
   function pick(k) {
     store = STORES[k]; order = {}; sent = false;
-    [].forEach.call($("tabs").children, function (b, i) { b.setAttribute("aria-selected", i === k ? "true" : "false"); });
+    [].forEach.call($("chips").children, function (b, i) { b.setAttribute("aria-pressed", i === k ? "true" : "false"); });
+    $("storeName").textContent = store.short;
     $("keys").innerHTML = "";
     store.items.forEach(function (m, i) {
       var b = document.createElement("button");
@@ -492,31 +839,131 @@ footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-cont
     store.items.forEach(function (m, i) {
       if (!order[i]) return; any = true; sub += order[i] * m[1];
       var li = document.createElement("li"); if (i === newIdx) li.className = "new";
-      li.innerHTML = '<span class="q">' + order[i] + '\u00d7</span><span>' + m[0] + '</span><span class="p">' + (order[i] * m[1]).toFixed(2) + "</span>";
+      li.innerHTML = '<span class="q">' + order[i] + '×</span><span>' + m[0] + '</span><span class="p">' + (order[i] * m[1]).toFixed(2) + "</span>";
       lines.appendChild(li);
     });
-    if (!any) lines.innerHTML = '<li style="display:block" class="empty">Tap an item to start a sale.</li>';
+    if (!any) lines.innerHTML = '<li style="display:block" class="empty">Tap an item to start.</li>';
     var tax = Math.round(sub * TAX * 100) / 100;
     $("sub").textContent = money(sub); $("tax").textContent = money(tax); $("tot").textContent = money(sub + tax);
     $("charge").textContent = any ? "Charge " + money(sub + tax) : "Charge";
     $("charge").disabled = !any; $("fire").disabled = !any;
     $("ordNo").textContent = "Sale #" + ("0000" + ordNo).slice(-4); $("open").textContent = open;
   }
-  $("fire").addEventListener("click", function () { if (sent) return; sent = true; open += 1; $("open").textContent = open; $("status").textContent = store.food ? "Sent to kitchen" : "Sale on hold"; });
+  $("fire").addEventListener("click", function () {
+    if (sent) return; sent = true; open += 1; $("open").textContent = open;
+    $("status").textContent = store.food ? "Sent to kitchen" : "Sale on hold";
+  });
   $("charge").addEventListener("click", function () {
     var btn = $("charge"); btn.classList.add("ok"); btn.textContent = "Approved"; btn.disabled = true; $("fire").disabled = true;
-    $("status").textContent = "Paid \u00b7 receipt ready";
-    setTimeout(function () { btn.classList.remove("ok"); order = {}; ordNo += 1; sent = false; render(-1); $("status").textContent = "Ready"; }, 1400);
+    $("status").textContent = "Paid · receipt sent";
+    setTimeout(function () { btn.classList.remove("ok"); order = {}; ordNo += 1; sent = false; render(-1); $("status").textContent = "Ready"; }, 1600);
   });
   pick(0);
 
-  // ---------- demo form (not wired to an inbox in this preview) ----------
+  function toTry() { $("tryReg").scrollIntoView({ behavior: still ? "auto" : "smooth", block: "start" }); }
+  $("goTry").addEventListener("click", toTry);
+
+  /* ---------- industry photo cards ---------- */
+  function card(st, k, full) {
+    var d = document.createElement("article"); d.className = "icard";
+    d.innerHTML = '<figure><img src="img/' + st.img + '.jpg" alt="' + st.name + ' counter with a CrateX-style register" loading="lazy"></figure>' +
+      '<div class="body"><h3>' + st.name + "</h3>" + (full ? "<p>" + st.blurb + "</p><ul>" + st.feats.map(function (f) { return "<li>" + f + "</li>"; }).join("") + "</ul>" : "") +
+      '<button type="button" class="btn btn-line go">Try it</button></div>';
+    d.querySelector(".go").addEventListener("click", function () {
+      pick(k);
+      if (location.hash && location.hash !== "#home") location.hash = "home"; else show("home");
+      setTimeout(toTry, 60);
+    });
+    return d;
+  }
+  STORES.forEach(function (st, k) { $("homeInd").appendChild(card(st, k, false)); $("indGrid").appendChild(card(st, k, true)); });
+
+  /* ---------- pricing ---------- */
+  var P = CONFIG.pricing;
+  var row = function (t) { return '<li style="padding:12px 0;border-top:1px solid var(--line);color:var(--mute)"><span style="color:var(--beam)">✓</span>&nbsp; ' + t + "</li>"; };
+  $("planList").innerHTML = ["Unlimited registers", "Inventory and alerts", "Catalog and modifiers", "Staff PINs", "Sales reports"].map(row).join("");
+  $("payList").innerHTML = ["Card, tap and cash", "Your own Stripe account", "Payouts to your bank"].map(row).join("");
+  if (P.monthly) $("planPrice").innerHTML = "$" + P.monthly + "<small>per location, per month</small>";
+  if (P.ratePct) $("ratePrice").innerHTML = P.ratePct + "% + " + (P.perTxCents || 0) + "¢<small>per card payment, through Stripe</small>";
+  [
+    ["What's included?", "Everything for one location: registers, inventory, staff, reports and payments."],
+    ["Setup fees?", "Any one-time cost is in your written quote before you sign."],
+    ["What do card payments cost?", P.ratePct ? P.ratePct + "% + " + (P.perTxCents || 0) + "¢ per payment, through Stripe." : "Your rate is shown before you sign up. Payments run on Stripe."],
+    ["When do I get paid?", "Stripe pays card sales out to your bank. We walk you through the schedule at setup."]
+  ].forEach(function (q) { var d = document.createElement("details"); d.innerHTML = "<summary>" + q[0] + "</summary><p>" + q[1] + "</p>"; $("priceFaq").appendChild(d); });
+
+  function calc() {
+    var n = function (id) { var v = parseFloat($(id).value); return isFinite(v) && v >= 0 ? v : 0; };
+    var sales = n("c-sales"), ticket = Math.max(n("c-ticket"), 1), rate = n("c-rate"), cents = n("c-cents"), soft = n("c-soft");
+    var tx = Math.round(sales / ticket), proc = sales * rate / 100 + tx * cents / 100, tot = proc + soft;
+    $("o-tx").textContent = tx.toLocaleString("en-US");
+    $("o-proc").textContent = usd0(proc); $("o-soft").textContent = usd0(soft); $("o-tot").textContent = usd0(tot);
+    $("o-eff").textContent = sales ? (tot / sales * 100).toFixed(2) + "%" : "0%";
+    if (P.monthly && P.ratePct != null) {
+      var ours = P.monthly + sales * P.ratePct / 100 + tx * (P.perTxCents || 0) / 100, diff = tot - ours;
+      $("o-us").innerHTML = "On CrateX: about " + usd0(ours) + " a month.<b>" + (diff > 0 ? "You keep " + usd0(diff) + " a month" : "Talk to us about your volume") + "</b>";
+    }
+  }
+  ["c-sales", "c-ticket", "c-rate", "c-cents", "c-soft"].forEach(function (id) { $(id).addEventListener("input", calc); });
+  $("calcForm").addEventListener("submit", function (e) { e.preventDefault(); });
+  calc();
+
+  /* ---------- hardware ---------- */
+  var IC = {
+    register: '<rect x="10" y="8" width="44" height="30" rx="4"/><path d="M26 38l-4 14h20l-4-14M18 52h28"/>',
+    reader: '<rect x="18" y="6" width="28" height="50" rx="6"/><rect x="24" y="12" width="16" height="12" rx="2"/><path d="M26 32h4M34 32h4M26 39h4M34 39h4M26 46h4M34 46h4"/>',
+    printer: '<path d="M18 22V8h28v14"/><rect x="8" y="22" width="48" height="22" rx="4"/><path d="M18 36h28v20H18z"/><path d="M24 44h16M24 50h10"/>',
+    drawer: '<rect x="6" y="18" width="52" height="30" rx="4"/><path d="M6 30h52M26 38h12"/>',
+    scanner: '<path d="M14 10h22a6 6 0 0 1 6 6v8a6 6 0 0 1-6 6h-6l-4 24h-8l2-24h-6a6 6 0 0 1-6-6v-8a6 6 0 0 1 6-6z"/><path d="M42 16l16-6M42 20h16M42 24l16 6"/>',
+    kds: '<rect x="6" y="8" width="52" height="34" rx="4"/><path d="M16 18h10M16 24h10M16 30h6M34 18h10M34 24h10M34 30h6M32 42v10M22 52h20"/>'
+  };
+  [["register", "Register screen", "Ring sales at the counter or in hand."],
+   ["reader", "Card reader", "Chip, tap and swipe."],
+   ["printer", "Receipt printer", "Or send receipts by text and email."],
+   ["drawer", "Cash drawer", "Opens with the sale."],
+   ["scanner", "Barcode scanner", "Scan straight onto the sale."],
+   ["kds", "Kitchen display", "Tickets for the kitchen or bar."]].forEach(function (h) {
+    var d = document.createElement("div"); d.className = "cell"; var m = CONFIG.hardware[h[0]];
+    d.innerHTML = '<svg class="ic" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + IC[h[0]] + "</svg><h3>" + h[1] + "</h3><p>" + h[2] + "</p>" + (m ? '<p class="models"><b>Works with:</b> ' + m + "</p>" : "");
+    $("hwGrid").appendChild(d);
+  });
+
+  /* ---------- switch ---------- */
+  var A = CONFIG.answers, ask = '<a href="#contact">Ask us</a>';
+  [["How long is the contract?", A.contract], ["Are prices public?", A.prices], ["Who processes payments?", A.payments],
+   ["Can I sell when the internet drops?", A.offline], ["Can I export my data and leave?", A.data], ["How fast is support?", A.support]]
+    .forEach(function (q) { var d = document.createElement("div"); d.innerHTML = "<b>" + q[0] + "</b>" + (q[1] ? '<span class="yes">' + q[1] + "</span>" : "<span>" + ask + "</span>"); $("qaList").appendChild(d); });
+
+  /* ---------- contact form ---------- */
+  $("f-type").innerHTML = STORES.map(function (s) { return "<option>" + s.name + "</option>"; }).join("") + "<option>Something else</option>";
   $("demoForm").addEventListener("submit", function (e) {
     e.preventDefault();
-    var f = e.target, note = $("formNote");
-    if (!f.name.value.trim() || !f.business.value.trim() || !/^\S+@\S+\.\S+$/.test(f.email.value)) { note.textContent = "Add your name, business name and a valid email."; return; }
-    note.textContent = "This preview is not connected to an inbox yet, so nothing was sent.";
+    var f = e.target, note = $("formNote"); note.classList.remove("ok-note");
+    if (!f.name.value.trim() || !f.business.value.trim() || !/^\S+@\S+\.\S+$/.test(f.email.value)) { note.textContent = "Add your name, business and a valid email."; return; }
+    if (!CONFIG.formEndpoint) { note.textContent = "This form isn't connected yet, so nothing was sent."; return; }
+    var btn = $("f-send"); btn.disabled = true; note.textContent = "Sending…";
+    fetch(CONFIG.formEndpoint, { method: "POST", headers: { Accept: "application/json" }, body: new FormData(f) })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); note.classList.add("ok-note"); note.textContent = "Sent. We'll be in touch."; f.reset(); })
+      .catch(function () { note.textContent = "That didn't go through. Try again."; })
+      .then(function () { btn.disabled = false; });
   });
+
+  /* ---------- router ---------- */
+  var VIEWS = ["home", "industries", "pricing", "hardware", "switch", "contact", "privacy", "terms"];
+  var TITLES = { home: "CrateX | Everything your counter needs", industries: "Industries | CrateX", pricing: "Pricing | CrateX", hardware: "Hardware | CrateX", "switch": "Switch to CrateX", contact: "Contact | CrateX", privacy: "Privacy | CrateX", terms: "Terms | CrateX" };
+  var views = document.querySelectorAll("[data-view]"), first = true;
+  function show(v) {
+    views.forEach(function (el) { el.hidden = el.getAttribute("data-view") !== v; });
+    document.querySelectorAll("#mainNav a").forEach(function (a) { if (a.getAttribute("href") === "#" + v && !a.classList.contains("btn")) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+    document.title = TITLES[v];
+    $("nav").classList.remove("open"); $("menuBtn").setAttribute("aria-expanded", "false");
+    if (!first) window.scrollTo(0, 0);
+    first = false;
+  }
+  function route() { var h = location.hash.slice(1); show(VIEWS.indexOf(h) >= 0 ? h : "home"); }
+  window.addEventListener("hashchange", route);
+  route();
+  $("menuBtn").addEventListener("click", function () { var o = $("nav").classList.toggle("open"); this.setAttribute("aria-expanded", o ? "true" : "false"); });
 })();
 </script>
 </body>
