@@ -406,6 +406,24 @@ footer .base { display: flex; flex-wrap: wrap; justify-content: space-between; g
 .qa2 a { color: var(--beam); }
 @media (max-width: 640px) { .qa2 div { grid-template-columns: 1fr; gap: 6px; } }
 .reactor .chip { font-size: 12.5px; }
+.owners { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+.owner { position: relative; border-radius: 22px; overflow: hidden; min-height: 440px; border: 1px solid var(--line); display: flex; align-items: flex-end; }
+.owner img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.owner::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, rgba(4,7,13,.92)); }
+.owner div { position: relative; z-index: 1; padding: 24px; display: grid; gap: 6px; }
+.owner b { font: 700 20px/1.2 var(--display); letter-spacing: -.01em; }
+.owner span { color: #C5D2E6; font-size: 15px; }
+@media (max-width: 900px) { .owners { grid-template-columns: 1fr; } .owner { min-height: 340px; } }
+.spot { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 16px; }
+.spot .tall { border-radius: 24px; overflow: hidden; border: 1px solid var(--line); min-height: 520px; position: relative; }
+.spot .tall img, .spot .wide img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.spot .col { display: grid; gap: 16px; grid-template-rows: 1fr auto; }
+.spot .wide { border-radius: 24px; overflow: hidden; border: 1px solid var(--line); position: relative; min-height: 300px; }
+.spot .note { position: absolute; left: 22px; bottom: 22px; right: 22px; font: 700 clamp(20px, 2.2vw, 28px)/1.15 var(--display); letter-spacing: -.02em; text-shadow: 0 4px 30px rgba(0,0,0,.7); }
+@media (max-width: 900px) { .spot { grid-template-columns: 1fr; } .spot .tall { min-height: 420px; } }
+.hw-hero { border-radius: 24px; overflow: hidden; border: 1px solid var(--line); aspect-ratio: 3 / 2; max-height: 560px; width: 100%; margin-bottom: 16px; }
+.hw-hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
 .mosaic { display: grid; grid-template-columns: 1.6fr 1fr 1fr; grid-template-rows: repeat(2, clamp(190px, 19vw, 290px)); gap: 12px; padding: 0 12px; }
 .mosaic figure { margin: 0; position: relative; border-radius: 20px; overflow: hidden; background: var(--deck); }
 .mosaic figure:first-child { grid-row: span 2; }
@@ -513,6 +531,18 @@ footer .base { display: flex; flex-wrap: wrap; justify-content: space-between; g
     </div>
   </section>
 
+  <section class="sec-tight">
+    <div class="wrap">
+      <div class="spot">
+        <div class="tall"><img src="img/handheld.jpg" alt="Hand holding a handheld card terminal with a glowing screen" loading="lazy"><span class="note" style="top:22px;bottom:auto">Take payment anywhere in the room.</span></div>
+        <div class="col">
+          <div class="wide"><img src="img/tap-macro.jpg" alt="Card tapping a card reader with a glowing blue ring" loading="lazy"><span class="note">Tap. Paid.</span></div>
+          <div class="panel" style="padding:24px 26px"><p class="tag">Payments</p><h3 style="font-size:20px">Card, tap, phone or cash.</h3><p style="color:var(--mute)">Runs on Stripe. Paid out to your bank.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="tryReg">
     <div class="wrap try-wrap">
       <div class="head center" style="margin-bottom:6px">
@@ -573,6 +603,17 @@ footer .base { display: flex; flex-wrap: wrap; justify-content: space-between; g
     <div class="wrap">
       <div class="head"><p class="tag">Industries</p><h2>Built for your kind of store.</h2></div>
       <div class="icards" id="homeInd"></div>
+    </div>
+  </section>
+
+  <section class="sec-tight">
+    <div class="wrap">
+      <div class="head"><p class="tag">Built for owners</p><h2>For the people behind the counter.</h2></div>
+      <div class="owners">
+        <div class="owner"><img src="img/owner-cafe.jpg" alt="Smiling café owner behind her counter" loading="lazy"><div><b>Cafés</b><span>Fast line, happy regulars.</span></div></div>
+        <div class="owner"><img src="img/owner-barber.jpg" alt="Barber shop owner leaning on his counter next to a register" loading="lazy"><div><b>Barbers and salons</b><span>Services, products and tips in one sale.</span></div></div>
+        <div class="owner"><img src="img/team.jpg" alt="Restaurant team laughing around a tablet before opening" loading="lazy"><div><b>Restaurants</b><span>Easy enough to learn before the first rush.</span></div></div>
+      </div>
     </div>
   </section>
 
@@ -655,7 +696,7 @@ footer .base { display: flex; flex-wrap: wrap; justify-content: space-between; g
     <p class="tag">Hardware</p>
     <h1>Start small. Add as you grow.</h1>
   </div></header>
-  <section class="sec-tight hw"><div class="wrap"><div class="grid3" id="hwGrid"></div></div></section>
+  <section class="sec-tight hw"><div class="wrap"><div class="hw-hero"><img src="img/hardware.jpg" alt="Register screen, card reader and receipt printer on a navy background" loading="lazy"></div><div class="grid3" id="hwGrid"></div></div></section>
   <section class="sec-tight"><div class="wrap"><div class="band"><h2>Have hardware already?</h2><div class="cta"><a class="btn btn-beam" href="#contact">Tell us what you have</a></div></div></div></section>
 </div>
 
