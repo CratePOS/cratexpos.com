@@ -406,6 +406,101 @@ footer .base { display: flex; flex-wrap: wrap; justify-content: space-between; g
 .qa2 a { color: var(--beam); }
 @media (max-width: 640px) { .qa2 div { grid-template-columns: 1fr; gap: 6px; } }
 .reactor .chip { font-size: 12.5px; }
+/* ===== scattered photos ===== */
+.scatter-sec { padding: 40px 0 24px; overflow: hidden; }
+.scatter { position: relative; max-width: 1240px; height: 760px; margin: 0 auto; }
+.sc { position: absolute; margin: 0; border-radius: 18px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 30px 70px -30px rgba(0,0,0,.85); background: var(--deck); transition: transform .5s cubic-bezier(.2,.7,.2,1), box-shadow .5s; animation: drift 9s ease-in-out infinite alternate; }
+.sc img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.sc figcaption { position: absolute; left: 12px; bottom: 12px; font: 500 11px/1 var(--mono); letter-spacing: .18em; text-transform: uppercase; color: var(--ice); background: rgba(4,7,13,.62); backdrop-filter: blur(8px); border: 1px solid var(--line); padding: 8px 11px; border-radius: 99px; }
+.sc:hover { transform: rotate(0deg) scale(1.04) !important; z-index: 5; box-shadow: 0 40px 90px -30px rgba(124,212,255,.35); }
+.s1 { left: 2%; top: 60px; width: 36%; aspect-ratio: 4 / 3; transform: rotate(-3deg); animation-delay: -1s; }
+.s2 { left: 41%; top: 0; width: 22%; aspect-ratio: 4 / 5; transform: rotate(2.5deg); animation-delay: -4s; }
+.s3 { right: 3%; top: 90px; width: 29%; aspect-ratio: 3 / 2; transform: rotate(3.5deg); animation-delay: -2s; }
+.s4 { left: 16%; top: 420px; width: 27%; aspect-ratio: 3 / 2; transform: rotate(2deg); animation-delay: -6s; }
+.s5 { right: 13%; top: 400px; width: 33%; aspect-ratio: 16 / 10; transform: rotate(-2.5deg); animation-delay: -3s; }
+@keyframes drift { from { translate: 0 -6px; } to { translate: 0 8px; } }
+@media (max-width: 760px) {
+  .scatter { height: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; padding: 0 16px; }
+  .sc { position: relative; inset: auto !important; width: auto !important; aspect-ratio: 1 / 1 !important; }
+  .s1 { grid-column: 1 / -1; aspect-ratio: 16 / 10 !important; }
+  .s2, .s5 { transform: rotate(-1.5deg); } .s3, .s4 { transform: rotate(1.5deg); }
+}
+/* ===== brand mark section ===== */
+.brandmark { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: center; margin-bottom: 96px; }
+.brandmark .reactor { max-width: 520px; }
+.bm-copy h2 { margin: 14px 0; max-width: 16ch; }
+@media (max-width: 900px) { .brandmark { grid-template-columns: 1fr; } .brandmark .reactor { max-width: 380px; } }
+@media (prefers-reduced-motion: reduce) { .sc { animation: none; } }
+
+/* ===== video-style hero ===== */
+.vhero { position: relative; isolation: isolate; overflow: hidden; min-height: clamp(600px, 86vh, 880px); display: flex; align-items: center; background: radial-gradient(60% 80% at 78% 50%, rgba(124,212,255,.16), transparent 65%), radial-gradient(50% 60% at 0% 100%, rgba(47,91,208,.18), transparent 70%), var(--void); }
+.vhero::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(90deg, var(--void) 0%, rgba(4,7,13,.85) 34%, rgba(4,7,13,0) 58%), linear-gradient(0deg, var(--void) 0%, transparent 22%); }
+.vhero-copy { position: relative; z-index: 2; width: 100%; padding-top: 56px; padding-bottom: 56px; }
+.vhero-copy h1 { font-weight: 800; font-size: clamp(50px, 7.2vw, 110px); line-height: .98; letter-spacing: -.04em; margin: 22px 0; display: grid; }
+.vhero-copy h1 span { color: rgba(234,243,255,.2); transition: color .45s, text-shadow .45s; }
+.vhero-copy h1 span.on { color: var(--ice); text-shadow: 0 0 46px rgba(124,212,255,.55); }
+.vhero-copy h1 span.on i { color: var(--beam); }
+.vhero-copy h1 i { font-style: normal; }
+.vhero-copy .lede { font-size: 19px; max-width: 30ch; }
+.works { margin-top: 30px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; font: 500 12px/1 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--mute); }
+.works span { color: var(--ice); border: 1px solid var(--line); border-radius: 99px; padding: 8px 12px; background: var(--glass); letter-spacing: .08em; }
+.vhero-media { position: absolute; z-index: 0; top: 0; bottom: 0; right: max(0px, calc((100vw - 1220px) / 2 - 40px)); width: min(58vw, 720px); display: flex; align-items: center; justify-content: center; }
+.vframe { position: relative; height: 118%; aspect-ratio: 934 / 1400; animation: vpush 14s ease-in-out infinite alternate; transform-origin: 60% 40%; }
+.vphoto { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; -webkit-mask-image: radial-gradient(closest-side at 54% 46%, #000 62%, transparent 100%); mask-image: radial-gradient(closest-side at 54% 46%, #000 62%, transparent 100%); }
+@keyframes vpush { from { transform: translate(0, 1.5%) scale(1) rotate(0deg); } to { transform: translate(-1.5%, -1.5%) scale(1.06) rotate(-1.2deg); } }
+.vscreen { position: absolute; left: 0; top: 0; width: 300px; height: 760px; transform-origin: 0 0; border-radius: 26px; overflow: hidden; background: linear-gradient(180deg, #0C1830, #050A14 70%); box-shadow: inset 0 0 0 1px rgba(124,212,255,.25), 0 0 60px rgba(124,212,255,.35); color: var(--ice); font-family: var(--body); }
+.vs-top { display: flex; justify-content: space-between; padding: 26px 24px 0; font: 500 13px/1 var(--mono); letter-spacing: .18em; color: var(--mute); }
+.vs-top span:first-child { color: var(--beam); }
+.vs-stage { position: absolute; inset: 70px 24px 40px; display: flex; flex-direction: column; opacity: 0; transform: translateY(14px); transition: opacity .5s, transform .5s; }
+.vs-stage.on { opacity: 1; transform: none; }
+.vs-stage[data-s="1"], .vs-stage[data-s="2"] { align-items: center; justify-content: center; text-align: center; gap: 22px; }
+.vs-label { margin: 18px 0 18px; font: 500 14px/1 var(--mono); letter-spacing: .14em; color: var(--mute); text-transform: uppercase; }
+.vs-lines { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; font-size: 21px; }
+.vs-lines li { display: flex; justify-content: space-between; }
+.vs-lines b { font: 500 19px/1.2 var(--mono); }
+.vs-total { margin: 26px 0 0; padding-top: 20px; border-top: 1px dashed rgba(124,212,255,.3); display: flex; justify-content: space-between; align-items: baseline; font-size: 20px; color: var(--mute); }
+.vs-total b { font: 700 40px/1 var(--display); color: var(--ice); letter-spacing: -.02em; }
+.vs-tap { position: relative; margin: auto auto 0; width: 132px; height: 132px; display: grid; place-items: center; color: var(--beam); }
+.vs-tap svg { width: 58px; height: 58px; }
+.vs-tap i { position: absolute; inset: 0; border-radius: 50%; border: 2px solid var(--beam); opacity: 0; animation: vring 2.4s ease-out infinite; }
+.vs-tap i:nth-child(2) { animation-delay: .8s; } .vs-tap i:nth-child(3) { animation-delay: 1.6s; }
+@keyframes vring { 0% { transform: scale(.45); opacity: .9; } 100% { transform: scale(1.35); opacity: 0; } }
+.vs-hint { margin: 14px 0 0; text-align: center; font: 500 15px/1.3 var(--mono); letter-spacing: .08em; color: var(--mute); }
+.vs-spin { width: 84px; height: 84px; border-radius: 50%; border: 4px solid rgba(124,212,255,.18); border-top-color: var(--beam); animation: vspin .8s linear infinite; }
+@keyframes vspin { to { transform: rotate(360deg); } }
+.vs-ok { width: 120px; height: 120px; border-radius: 50%; display: grid; place-items: center; color: #03121C; background: #B9F5C9; box-shadow: 0 0 60px rgba(185,245,201,.55); }
+.vs-ok svg { width: 64px; height: 64px; }
+.vs-big { margin: 0; font: 800 54px/1 var(--display); letter-spacing: -.03em; }
+.vs-sweep { position: absolute; inset: -40% -60%; background: linear-gradient(105deg, transparent 42%, rgba(191,233,255,.14) 50%, transparent 58%); animation: vsweep 7s ease-in-out infinite; pointer-events: none; }
+@keyframes vsweep { 0%, 60% { transform: translateX(-60%); } 100% { transform: translateX(60%); } }
+@media (max-width: 900px) {
+  .vhero { flex-direction: column; align-items: stretch; min-height: 0; }
+  .vhero::after { background: linear-gradient(0deg, var(--void) 0%, transparent 30%); }
+  .vhero-media { position: relative; right: auto; width: 100%; height: 520px; order: -1; }
+  .vframe { height: 108%; }
+  .vhero-copy { padding-top: 8px; }
+}
+@media (prefers-reduced-motion: reduce) { .vframe, .vs-sweep, .vs-tap i, .vs-spin { animation: none !important; } }
+
+.core3d { position: absolute; inset: 4%; display: grid; place-items: center; }
+.core3d canvas { width: 100%; height: 100%; display: block; cursor: grab; touch-action: pan-y; }
+.core3d canvas:active { cursor: grabbing; }
+.core3d .core { position: absolute; width: 46%; }
+.core3d.live .core { display: none; }
+.pieces { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 40px; align-items: center; }
+.pieces ol { list-style: none; margin: 28px 0 0; padding: 0; display: grid; gap: 4px; counter-reset: pc; }
+.pieces li { display: grid; grid-template-columns: 44px 1fr; gap: 4px 12px; padding: 16px 18px; border-radius: 16px; border: 1px solid transparent; transition: border-color .25s, background .25s; cursor: default; }
+.pieces li::before { counter-increment: pc; content: "0" counter(pc); grid-row: span 2; font: 500 12px/1.6 var(--mono); letter-spacing: .18em; color: var(--beam); }
+.pieces li b { font: 700 18px/1.3 var(--display); letter-spacing: -.01em; }
+.pieces li span { color: var(--mute); font-size: 15px; }
+.pieces li.on { border-color: rgba(124, 212, 255, .45); background: var(--glass); }
+.stage { position: relative; aspect-ratio: 1; max-width: 600px; width: 100%; margin: 0 auto; border-radius: 28px; border: 1px solid var(--line); background: radial-gradient(60% 60% at 50% 45%, rgba(124, 212, 255, .14), transparent 70%), var(--deck); overflow: hidden; }
+.stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.stage .tag3d { position: absolute; transform: translate(-50%, -50%); font: 500 11.5px/1 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--ice); background: rgba(4, 7, 13, .72); border: 1px solid var(--line); padding: 8px 11px; border-radius: 99px; white-space: nowrap; pointer-events: none; transition: border-color .25s, color .25s; }
+.stage .tag3d.on { border-color: var(--beam); color: var(--beam); }
+.stage .fallback { position: absolute; inset: 22%; }
+.stage.live .fallback { display: none; }
+@media (max-width: 900px) { .pieces { grid-template-columns: 1fr; } }
 svg.ig { width: 20px; height: 20px; flex: none; }
 .ig-link { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
 .ig-strip { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 32px; border: 1px solid var(--line); border-radius: 24px; padding: 28px 32px; background: var(--glass); }
@@ -489,44 +584,55 @@ svg.ig { width: 20px; height: 20px; flex: none; }
 
 <!-- ===================== HOME ===================== -->
 <div data-view="home">
-  <header class="hero">
-    <div class="wrap v4">
-      <div>
-        <p class="tag">Point of sale, minus the extras</p>
-        <h1 id="verbs"><span class="on">Ring<i>.</i></span><span>Pay<i>.</i></span><span>Done<i>.</i></span></h1>
-        <p class="lede">Everything your counter needs. Nothing it doesn't.</p>
-        <div class="cta">
-          <a class="btn btn-beam" href="#contact">Book a demo</a>
-          <button class="btn btn-line" type="button" id="goTry">Try the register</button>
+  <header class="vhero">
+    <div class="vhero-media" aria-hidden="true">
+      <div class="vframe" id="vframe">
+        <img src="img/smart-terminal.jpg" alt="" class="vphoto">
+        <div class="vscreen" id="vscreen">
+          <div class="vs-top"><span>CRATEX</span><span id="vsClock">Register 1</span></div>
+          <div class="vs-stage" data-s="0">
+            <p class="vs-label">Sale #0294</p>
+            <ul class="vs-lines"><li><span>2 × Latte</span><b>9.50</b></li><li><span>1 × Croissant</span><b>3.95</b></li><li><span>1 × Cold brew</span><b>4.25</b></li></ul>
+            <p class="vs-total"><span>Total</span><b>$19.27</b></p>
+            <div class="vs-tap"><i></i><i></i><i></i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8.5 7.5a6 6 0 0 1 0 9M12 5a9.5 9.5 0 0 1 0 14M15.5 2.5a13 13 0 0 1 0 19"/></svg></div>
+            <p class="vs-hint">Tap, insert or swipe</p>
+          </div>
+          <div class="vs-stage" data-s="1"><div class="vs-spin"></div><p class="vs-hint">Processing</p></div>
+          <div class="vs-stage" data-s="2">
+            <div class="vs-ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+            <p class="vs-big">$19.27</p><p class="vs-hint">Approved · receipt sent</p>
+          </div>
+          <div class="vs-sweep"></div>
         </div>
       </div>
-      <div class="reactor" aria-hidden="true">
-        <svg class="rings" viewBox="-300 -300 600 600">
-          <polygon class="r3" points="0,-280 242.5,-140 242.5,140 0,280 -242.5,140 -242.5,-140"/>
-          <polygon class="r2" points="0,-230 199.2,-115 199.2,115 0,230 -199.2,115 -199.2,-115"/>
-          <polygon class="r1" points="0,-180 155.9,-90 155.9,90 0,180 -155.9,90 -155.9,-90"/>
-        </svg>
-        <svg class="core" viewBox="-90 -102 180 204"><use href="#cx-mark" x="-90" y="-102" width="180" height="204"/></svg>
-        <div class="chip c1"><b>#0294</b><br><em>ringing</em></div>
-        <div class="chip c2"><b>#0293</b><br><em>paid</em> $29.40</div>
-        <div class="chip c3"><b>Tote</b><br><em>3 left</em></div>
+    </div>
+    <div class="wrap vhero-copy">
+      <p class="tag">Point of sale, minus the extras</p>
+      <h1 id="verbs"><span class="on">Sell<i>.</i></span><span>Get paid<i>.</i></span><span>Go home<i>.</i></span></h1>
+      <p class="lede">Everything your counter needs. Nothing it doesn't.</p>
+      <div class="cta">
+        <a class="btn btn-beam" href="#contact">Book a demo</a>
+        <button class="btn btn-line" type="button" id="goTry">Try the register</button>
       </div>
+      <p class="works">Runs on Stripe readers <span>S700</span><span>M2</span><span>Tap to Pay</span></p>
     </div>
   </header>
 
-  <div class="mosaic" aria-label="CrateX at work">
-    <figure><img src="img/food.jpg" alt="Crispy chicken sandwich and fries, kitchen order screen behind" loading="lazy"><figcaption>Restaurants</figcaption></figure>
-    <figure><img src="img/tap.jpg" alt="Customer tapping a phone on a card reader" loading="lazy"><figcaption>Tap to pay</figcaption></figure>
-    <figure><img src="img/bakery.jpg" alt="Bakery worker handing a bag of pastries across the counter" loading="lazy"><figcaption>Bakeries</figcaption></figure>
-    <figure><img src="img/retail.jpg" alt="Boutique checkout counter with a register and card reader" loading="lazy"><figcaption>Retail</figcaption></figure>
-    <figure><img src="img/pizza.jpg" alt="Pizza on a peel beside a register, wood oven glowing behind" loading="lazy"><figcaption>Pizzerias</figcaption></figure>
-  </div>
+  <section class="scatter-sec" aria-label="CrateX at work">
+    <div class="scatter">
+      <figure class="sc s1"><img src="img/food.jpg" alt="Crispy chicken sandwich and fries, kitchen order screen behind" loading="lazy"><figcaption>Restaurants</figcaption></figure>
+      <figure class="sc s2"><img src="img/phone-tap.jpg" alt="Customer paying by tapping their phone to the cashier's phone" loading="lazy"><figcaption>Tap to pay</figcaption></figure>
+      <figure class="sc s3"><img src="img/bakery.jpg" alt="Bakery worker handing a bag of pastries across the counter" loading="lazy"><figcaption>Bakeries</figcaption></figure>
+      <figure class="sc s4"><img src="img/retail.jpg" alt="Boutique checkout counter with a register and card reader" loading="lazy"><figcaption>Retail</figcaption></figure>
+      <figure class="sc s5"><img src="img/pizza.jpg" alt="Pizza on a peel beside a register, wood oven glowing behind" loading="lazy"><figcaption>Pizzerias</figcaption></figure>
+    </div>
+  </section>
 
   <section>
     <div class="wrap">
       <div class="head"><p class="tag">Just what you need</p><h2>Big-chain POS is built for big chains.</h2><p class="lede">CrateX is built for your counter. The tools you use every day, and none of the weight.</p></div>
       <div class="lean">
-        <div class="pic"><img src="img/minimal.jpg" alt="One register screen and one card reader on a clean counter" loading="lazy"><span>A screen and a reader. That's the setup.</span></div>
+        <div class="pic"><img src="img/hw-future.jpg" alt="Register screen, glass card reader and receipt printer on a navy background" loading="lazy"><span>A screen, a reader, a printer. That's the setup.</span></div>
         <div class="lists">
           <div class="panel yes"><p class="tag">You get</p><ul>
             <li>A fast register</li><li>Card, tap and cash</li><li>Stock that counts itself</li><li>Orders to the kitchen</li><li>Staff PINs</li><li>Daily sales reports</li>
@@ -534,18 +640,6 @@ svg.ig { width: 20px; height: 20px; flex: none; }
           <div class="panel no"><p class="tag" style="color:var(--mute)">You skip</p><ul>
             <li>Enterprise add-ons you'll never open</li><li>Settings built for 500 locations</li><li>Bundles you pay for and don't use</li><li>A training day to ring one sale</li>
           </ul></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec-tight">
-    <div class="wrap">
-      <div class="spot">
-        <div class="tall"><img src="img/handheld.jpg" alt="Hand holding a handheld card terminal with a glowing screen" loading="lazy"><span class="note" style="top:22px;bottom:auto">Take payment anywhere in the room.</span></div>
-        <div class="col">
-          <div class="wide"><img src="img/tap-macro.jpg" alt="Card tapping a card reader with a glowing blue ring" loading="lazy"><span class="note">Tap. Paid.</span></div>
-          <div class="panel" style="padding:24px 26px"><p class="tag">Payments</p><h3 style="font-size:20px">Card, tap, phone or cash.</h3><p style="color:var(--mute)">Runs on Stripe. Paid out to your bank.</p></div>
         </div>
       </div>
     </div>
@@ -586,8 +680,9 @@ svg.ig { width: 20px; height: 20px; flex: none; }
     <div class="wrap">
       <div class="head"><p class="tag">The system</p><h2>Everything at the counter.</h2></div>
       <div class="feat4">
-        <div class="cell photo wide" style="background-image:linear-gradient(180deg, rgba(4,7,13,0) 30%, rgba(4,7,13,.92)), url(img/tap.jpg)">
-          <h3>Card, tap or cash</h3><p>Paid out to your bank by Stripe.</p>
+        <div class="cell wide">
+          <h3 class="big">Card, tap or cash</h3><p>On Stripe readers. Paid out to your bank.</p>
+          <div class="tap vis"><span></span><span></span><span></span><b>Tap to pay</b></div>
         </div>
         <div class="cell">
           <h3 class="big">Stock counts itself</h3><p>Low items glow before you run out.</p>
@@ -597,8 +692,12 @@ svg.ig { width: 20px; height: 20px; flex: none; }
             <div><b>Ceramic mug <span>41</span></b><small><u style="width:88%"></u></small></div>
           </div>
         </div>
-        <div class="cell photo" style="background-image:linear-gradient(180deg, rgba(4,7,13,0) 35%, rgba(4,7,13,.92)), url(img/owner.jpg)">
-          <h3>See what sold</h3><p>Your day in one screen.</p>
+        <div class="cell">
+          <h3 class="big">See what sold</h3><p>Your day in one screen.</p>
+          <div class="vis">
+            <div class="bars"><i style="height:22%"></i><i style="height:58%"></i><i style="height:96%"></i><i style="height:74%"></i><i style="height:38%"></i><i style="height:30%"></i><i style="height:52%"></i><i style="height:88%"></i><i style="height:100%"></i><i style="height:66%"></i><i style="height:34%"></i></div>
+            <div class="cap"><span>11a</span><span>Sample day</span><span>9p</span></div>
+          </div>
         </div>
         <div class="cell photo wide" style="background-image:linear-gradient(180deg, rgba(4,7,13,0) 30%, rgba(4,7,13,.92)), url(img/kitchen.jpg)">
           <h3>Straight to the kitchen</h3><p>Rung in, on the screen, on the plate.</p>
@@ -619,6 +718,24 @@ svg.ig { width: 20px; height: 20px; flex: none; }
       <div class="ig-strip" style="margin-bottom:96px">
         <div><p class="tag">Instagram</p><h2>Follow @cratexpos</h2><p style="color:var(--mute);margin-top:8px">New features and stores running CrateX.</p></div>
         <a class="btn btn-beam ig-link" href="https://www.instagram.com/cratexpos/" target="_blank" rel="noopener"><svg class="ig" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"/></svg>Follow on Instagram</a>
+      </div>
+      <div class="brandmark">
+        <div class="bm-copy">
+          <p class="tag">CrateX</p>
+          <h2>Made in New York. Built for your counter.</h2>
+          <p class="lede">One system for the register, payments, stock and reports. Live at <span data-cfg="firstCustomer">a New York restaurant</span>.</p>
+        </div>
+        <div class="reactor" aria-hidden="true">
+          <svg class="rings" viewBox="-300 -300 600 600">
+            <polygon class="r3" points="0,-280 242.5,-140 242.5,140 0,280 -242.5,140 -242.5,-140"/>
+            <polygon class="r2" points="0,-230 199.2,-115 199.2,115 0,230 -199.2,115 -199.2,-115"/>
+            <polygon class="r1" points="0,-180 155.9,-90 155.9,90 0,180 -155.9,90 -155.9,-90"/>
+          </svg>
+          <svg class="core" viewBox="-90 -102 180 204"><use href="#cx-mark" x="-90" y="-102" width="180" height="204"/></svg>
+          <div class="chip c1"><b>#0294</b><br><em>ringing</em></div>
+          <div class="chip c2"><b>#0293</b><br><em>paid</em> $29.40</div>
+          <div class="chip c3"><b>Tote</b><br><em>3 left</em></div>
+        </div>
       </div>
       <div class="head"><p class="tag">Built for owners</p><h2>For the people behind the counter.</h2></div>
       <div class="owners">
@@ -708,7 +825,7 @@ svg.ig { width: 20px; height: 20px; flex: none; }
     <p class="tag">Hardware</p>
     <h1>Start small. Add as you grow.</h1>
   </div></header>
-  <section class="sec-tight hw"><div class="wrap"><div class="hw-hero"><img src="img/hardware.jpg" alt="Register screen, card reader and receipt printer on a navy background" loading="lazy"></div><div class="grid3" id="hwGrid"></div></div></section>
+  <section class="sec-tight hw"><div class="wrap"><div class="hw-hero"><img src="img/hw-future.jpg" alt="Register screen, glass card reader and receipt printer on a navy background" loading="lazy"></div><div class="grid3" id="hwGrid"></div></div></section>
   <section class="sec-tight"><div class="wrap"><div class="band"><h2>Have hardware already?</h2><div class="cta"><a class="btn btn-beam" href="#contact">Tell us what you have</a></div></div></div></section>
 </div>
 
@@ -796,6 +913,29 @@ svg.ig { width: 20px; height: 20px; flex: none; }
 </footer>
 
 <script>
+(function () {
+  /* map the screen UI onto the terminal's glass (corner points measured on the photo, 934 x 1400) */
+  var Q = [[436, 176], [752, 160], [594, 996], [258, 962]], W = 300, H = 760;
+  var frame = document.getElementById("vframe"), scr = document.getElementById("vscreen");
+  if (!frame || !scr) return;
+  function solve(A, b) { var n = 8; for (var i = 0; i < n; i++) { var m = i; for (var r = i + 1; r < n; r++) if (Math.abs(A[r][i]) > Math.abs(A[m][i])) m = r; var t = A[i]; A[i] = A[m]; A[m] = t; t = b[i]; b[i] = b[m]; b[m] = t; for (var r2 = i + 1; r2 < n; r2++) { var f = A[r2][i] / A[i][i]; for (var c = i; c < n; c++) A[r2][c] -= f * A[i][c]; b[r2] -= f * b[i]; } } var x = new Array(n); for (var i2 = n - 1; i2 >= 0; i2--) { var s = b[i2]; for (var c2 = i2 + 1; c2 < n; c2++) s -= A[i2][c2] * x[c2]; x[i2] = s / A[i2][i2]; } return x; }
+  function fit() {
+    var k = frame.clientWidth / 934, src = [[0, 0], [W, 0], [W, H], [0, H]], A = [], b = [];
+    for (var i = 0; i < 4; i++) { var x = src[i][0], y = src[i][1], u = Q[i][0] * k, v = Q[i][1] * k;
+      A.push([x, y, 1, 0, 0, 0, -u * x, -u * y]); b.push(u); A.push([0, 0, 0, x, y, 1, -v * x, -v * y]); b.push(v); }
+    var h = solve(A, b);
+    scr.style.transform = "matrix3d(" + [h[0], h[3], 0, h[6], h[1], h[4], 0, h[7], 0, 0, 1, 0, h[2], h[5], 0, 1].join(",") + ")";
+  }
+  fit(); window.addEventListener("resize", fit);
+  if ("ResizeObserver" in window) new ResizeObserver(fit).observe(frame);
+  var stages = scr.querySelectorAll(".vs-stage"), still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var seq = [[0, 3600], [1, 1300], [2, 2600]], i = 0;
+  function show(n) { stages.forEach(function (s) { s.classList.toggle("on", +s.getAttribute("data-s") === n); }); }
+  if (still) { show(0); return; }
+  (function next() { show(seq[i][0]); setTimeout(function () { i = (i + 1) % seq.length; next(); }, seq[i][1]); })();
+})();
+</script>
+<script>
 /* =====================================================================
    CONFIG: fill in your real details. Anything left null shows an
    honest "coming soon / ask us" on the site instead of a made-up value.
@@ -816,7 +956,7 @@ var CONFIG = {
     data: null,
     support: null
   },
-  hardware: { register: null, reader: null, printer: null, drawer: null, scanner: null, kds: null }
+  hardware: { register: null, reader: "Stripe Reader S700, Stripe Reader M2 and Tap to Pay", printer: null, drawer: null, scanner: null, kds: null }
 };
 
 (function () {
@@ -921,7 +1061,7 @@ var CONFIG = {
   /* ---------- industry photo cards ---------- */
   function card(st, k, full) {
     var d = document.createElement("article"); d.className = "icard";
-    d.innerHTML = '<figure><img src="img/' + st.img + '.jpg" alt="' + st.name + ' counter with a CrateX-style register" loading="lazy"></figure>' +
+    d.innerHTML = (full ? '<figure><img src="img/' + st.img + '.jpg" alt="' + st.name + ' counter with a CrateX-style register" loading="lazy"></figure>' : '') +
       '<div class="body"><h3>' + st.name + "</h3>" + (full ? "<p>" + st.blurb + "</p><ul>" + st.feats.map(function (f) { return "<li>" + f + "</li>"; }).join("") + "</ul>" : "") +
       '<button type="button" class="btn btn-line go">Try it</button></div>';
     d.querySelector(".go").addEventListener("click", function () {
